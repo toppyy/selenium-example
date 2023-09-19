@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <title>Georg</title>
+    </head>
+    <body>
+        <div id="container">
+            <p>Jobs will appear here</p>
+            <div id="job-container"></div>
+        </div>
+
+    </body>
+    <script>
+
+        // max delay between job creation
+        const MAX_DELAY = 5000; // 5s
+
+        // Bunch of important tasks
+        const JOBS = [
+            "walk dog",
+            "acquire twitter",
+            "call georg",
+            "maintain",
+            "feed monkey",
+            "beer o'clock"
+        ]
+
+        const getRandomJob = () => JOBS[ Math.floor(Math.random() * JOBS.length) ]
+
+        // Creates a button that disappears upon clicking
+
+        const addJob = function(job, jobContainer) {
+            const btn = document.createElement('button');
+            // Job has a id consisting of constant JOB- and random int btwn 0-one million
+            btn.id = "JOB-" + Math.floor(Math.random() * 1000000);
+            btn.innerHTML = job;
+
+            btn.addEventListener('click', (e) => {
+                const btn = e.target;
+                btn.parentNode.removeChild(btn); // Remove the button through parent
+            })
+
+            jobContainer.appendChild(btn);
+        }
+        
+        // Container where jobs will be posted
+        const jobContainer = document.getElementById('job-container'); 
+        
+        // Wait for a random interval between 1 - X secs before creating a job
+
+        const addRandomJobAndInitNext = () => {
+            
+            // Add a random job
+            addJob(getRandomJob(), jobContainer);
+
+            // Fire of the next job-adder
+            const delay = Math.random() * MAX_DELAY; 
+            console.log("Adding next job after " + Math.round(delay/1000) + " seconds");
+            setTimeout(addRandomJobAndInitNext, delay);
+        }
+
+
+        setTimeout(addRandomJobAndInitNext, 6000)
+
+
+        
+
+
+    </script>
+</html>
