@@ -1,5 +1,13 @@
 # Selenium-example
 
+## Requirements
+
+- python3
+- [Selenium (installation)](https://selenium-python.readthedocs.io/installation.html)
+- [Chromium driver for selenium](https://selenium-python.readthedocs.io/installation.html#drivers)
+
+
+## How to
 
 Start a web-server from root serving the imaginary website under `./html`:
 
